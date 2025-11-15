@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro Mujeres que Lideran con Propósito</title>
+    <style>
+        :root {
+            --primary-color: rgb(95, 40, 99);
+            --secondary-color: #f6f7f8;
+            --accent-color: rgb(77, 21, 86);
+            --text-color: #333;
+            --light-text: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #e0e0e0;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(95, 40, 99, 0.8), rgba(77, 21, 86, 0.9)), url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-text);
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .hero-tagline {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px 0;
+            letter-spacing: 1px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .event-details {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .event-details h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .event-details p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .event-details p i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* Why Attend */
+        .why-attend {
+            background-color: #f0f0f0;
+        }
+        
+        .reasons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .reason-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--light-text);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .reason-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .reason-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .reason-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        /* Speakers */
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .speaker-card {
+            background-color: var(--light-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .speaker-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .speaker-image {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .speaker-info {
+            padding: 20px;
+        }
+        
+        .speaker-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .speaker-role {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        /* Panelists */
+        .panelists {
+            background-color: #f0f0f0;
+        }
+        
+        .panelists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .panelist-card {
+            background-color: var(--light-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .panelist-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .panelist-image {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .panelist-info {
+            padding: 20px;
+        }
+        
+        .panelist-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .collaborators {
+            margin-top: 50px;
+        }
+        
+        .collaborators-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .collaborator-logo {
+            width: 150px;
+            height: 80px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        /* Organizers */
+        .organizers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .organizer-card {
+            background-color: var(--light-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .organizer-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .organizer-image {
+            height: 250px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .organizer-info {
+            padding: 20px;
+        }
+        
+        .organizer-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        /* Registration */
+        .registration {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .registration .section-title {
+            color: var(--light-text);
+        }
+        
+        .registration .section-title::after {
+            background-color: var(--secondary-color);
+        }
+        
+        .registration-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--light-text);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p {
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #e0e0e0;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">FORO MELIPILLA</div>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#about">Acerca del Foro</a></li>
+                        <li><a href="#why">¿Por qué asistir?</a></li>
+                        <li><a href="#speakers">Speakers</a></li>
+                        <li><a href="#panelists">Panelistas</a></li>
+                        <li><a href="#organizers">Organizadoras</a></li>
+                        <li><a href="#registration">Registro</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h1>1° FORO DE LA PROVINCIA DE MELIPILLA</h1>
+            <p class="hero-tagline">INSPIRA * CONECTA * IMPACTA</p>
+            <p>Mujeres que Lideran con Propósito</p>
+            <a href="#registration" class="btn">QUIERO MI CUPO</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">De qué se trata el foro</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Mujeres que Lideran con Propósito</strong> es mucho más que un foro; es un punto de convergencia entre la experiencia, el servicio público y la transformación social, donde se compartirán testimonios y reflexiones que impulsan el desarrollo humano con sentido y propósito.</p>
+                    <h3>¿A quién está dirigido este evento?</h3>
+                    <p>El foro "Mujeres que Lideran con Propósito" está pensado para todas aquellas personas —mujeres y hombres— que sienten el llamado de liderar con sentido, transformar su entorno y crecer junto a otros.</p>
+                    <p>Es una experiencia diseñada para quienes buscan unir liderazgo, propósito y acción social en su vida personal o profesional.</p>
+                    <div class="event-details">
+                        <h3>EVENTO GRATUITO CON CUPOS LIMITADOS</h3>
+                        <p><i>📅</i> Jueves 27 de noviembre de 2025</p>
+                        <p><i>🕥</i> Acreditación: 9:30 Hrs. Inicio: 10:00 Hrs.</p>
+                        <p><i>📍</i> Auditorio DUOC UC – Sede Melipilla<br> Calle Serrano 1105, Melipilla.</p>
+                        <a href="#registration" class="btn">QUIERO MI CUPO</a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <!-- Aquí iría una imagen relacionada con el evento -->
+                    <div style="width:100%; height:400px; background-color:#ddd; display:flex; align-items:center; justify-content:center; color:var(--primary-color); font-weight:bold;">
+                        Imagen del evento
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Attend Section -->
+    <section id="why" class="why-attend">
+        <div class="container">
+            <h2 class="section-title">POR QUÉ NO TE PUEDES PERDER ESTE EVENTO</h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Porque este es el momento y el lugar donde las mujeres líderes de Melipilla se conectan para transformar.
+                Escucharás historias reales de mujeres que están cambiando su entorno con propósito, y descubrirás herramientas para potenciar tu propio liderazgo.
+                No se trata solo de asistir a un foro, sino de ser parte de una red que impulsa el cambio, la colaboración y la confianza femenina.
+            </p>
+            <div class="reasons">
+                <div class="reason-card">
+                    <div class="reason-icon">🌐</div>
+                    <h3>Conecta</h3>
+                    <p>Este evento te permitirá ampliar tu red de contactos con personas que lideran en el ámbito social, político y empresarial, generando alianzas estratégicas y relaciones que trascienden el día del foro.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">📚</div>
+                    <h3>Aprende</h3>
+                    <p>Escucha experiencias inspiradoras y descubre estrategias prácticas para fortalecer tu liderazgo. Los paneles y conversaciones están diseñados para entregarte conocimiento real, aplicado y motivador, de la mano de referentes locales y regionales.</p>
+                </div>
+                <div class="reason-card">
+                    <div class="reason-icon">🌱</div>
+                    <h3>Crece</h3>
+                    <p>Este encuentro no termina cuando cae el telón: puede ser el inicio de un proceso personal y colectivo. Al asistir, te llevarás una nueva visión de ti, más consciente y con propósito, para impactar tu entorno y tu comunidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section id="speakers" class="speakers">
+        <div class="container">
+            <h2 class="section-title">NUESTRAS INCREÍBLES SPEAKERS</h2>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        Imagen de JOSEFA VILLAROEL
+                    </div>
+                    <div class="speaker-info">
+                        <div class="speaker-name">JOSEFA VILLAROEL</div>
+                        <div class="speaker-role">Experta en Ecosistemas de Emprendimientos y fundadora de OPEM</div>
+                        <div class="speaker-role">Co-Fundadora de Emporio Orgánika y Café Bistro</div>
+                    </div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        Imagen de ANGELA VERA
+                    </div>
+                    <div class="speaker-info">
+                        <div class="speaker-name">ANGELA VERA</div>
+                        <div class="speaker-role">Información adicional sobre Angela Vera</div>
+                    </div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        Imagen de JEANNETTE ARMIJO
+                    </div>
+                    <div class="speaker-info">
+                        <div class="speaker-name">JEANNETTE ARMIJO</div>
+                        <div class="speaker-role">Co-Fundadora y Presidenta Fundación APANINES</div>
+                    </div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        Imagen de CRISTINA SOTO
+                    </div>
+                    <div class="speaker-info">
+                        <div class="speaker-name">CRISTINA SOTO</div>
+                        <div class="speaker-role">Consejera Regional de la Región Metropolitana Circunscripción Melipilla</div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#registration" class="btn">QUIERO MI CUPO</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panelists Section -->
+    <section id="panelists" class="panelists">
+        <div class="container">
+            <h2 class="section-title">NUESTRAS PANELISTAS</h2>
+            <div class="panelists-grid">
+                <div class="panelist-card">
+                    <div class="panelist-image">
+                        Imagen de MARIANGELA GRACIA
+                    </div>
+                    <div class="panelist-info">
+                        <div class="panelist-name">MARIANGELA GRACIA</div>
+                        <div class="panelist-role">Directora Duoc UC Sede Melipilla</div>
+                    </div>
+                </div>
+                <div class="panelist-card">
+                    <div class="panelist-image">
+                        Imagen de BETIANA EXPOSITO
+                    </div>
+                    <div class="panelist-info">
+                        <div class="panelist-name">BETIANA EXPOSITO</div>
+                        <div class="panelist-role">Co-Fundadora y Presidenta Fundación Transformación Chile</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="collaborators">
+                <h3 class="section-title" style="font-size: 1.5rem;">COLABORADORES</h3>
+                <div class="collaborators-logos">
+                    <div class="collaborator-logo">Transformación Chile</div>
+                    <div class="collaborator-logo">Logo 2</div>
+                    <div class="collaborator-logo">Logo 3</div>
+                    <!-- Agregar más logos según sea necesario -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organizers Section -->
+    <section id="organizers" class="organizers">
+        <div class="container">
+            <h2 class="section-title">NUESTRAS ORGANIZADORAS</h2>
+            <div class="organizers-grid">
+                <div class="organizer-card">
+                    <div class="organizer-image">
+                        Imagen de CAROLINA SOTO SEGUEL
+                    </div>
+                    <div class="organizer-info">
+                        <div class="organizer-name">CAROLINA SOTO SEGUEL</div>
+                        <div class="organizer-role">Presidenta</div>
+                        <div class="organizer-role">Agrupación de Mujeres Emprendedoras de Melipilla</div>
+                        <div class="organizer-role">Facilitadora Fundación Transformación Chile</div>
+                    </div>
+                </div>
+                <div class="organizer-card">
+                    <div class="organizer-image">
+                        Imagen de VICTORIA SOTO SEGUEL
+                    </div>
+                    <div class="organizer-info">
+                        <div class="organizer-name">VICTORIA SOTO SEGUEL</div>
+                        <div class="organizer-role">Coach y Speaker certificada Maxwell Leadership</div>
+                        <div class="organizer-role">Facilitadora Fundación Transformación Chile</div>
+                    </div>
+                </div>
+                <div class="organizer-card">
+                    <div class="organizer-image">
+                        Imagen de MIRIAM URRA
+                    </div>
+                    <div class="organizer-info">
+                        <div class="organizer-name">MIRIAM URRA</div>
+                        <div class="organizer-role">Periodista y Facilitadora en Fundación Transformación Chile</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="registration" class="registration">
+        <div class="container">
+            <h2 class="section-title">REGISTRO Y MÁS INFORMACIÓN</h2>
+            <p style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Completa el siguiente formulario para asegurar tu cupo en este evento gratuito. Recibirás la confirmación de tu registro y toda la información necesaria para el día del evento.
+            </p>
+            <div class="registration-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organización / Empresa (opcional)</label>
+                        <input type="text" id="organization" name="organization">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">¿Qué esperas de este foro? (opcional)</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <button type="submit" class="btn">CONFIRMAR MI REGISTRO</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CONTACTO</h3>
+                    <p>Email: info@foromelipilla.cl</p>
+                    <p>Teléfono: +56 9 1234 5678</p>
+                </div>
+                <div class="footer-section">
+                    <h3>UBICACIÓN</h3>
+                    <p>Auditorio DUOC UC – Sede Melipilla</p>
+                    <p>Calle Serrano 1105, Melipilla</p>
+                </div>
+                <div class="footer-section">
+                    <h3>SÍGUENOS</h3>
+                    <div class="social-links">
+                        <a href="#">FB</a>
+                        <a href="#">IG</a>
+                        <a href="#">TW</a>
+                        <a href="#">LI</a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Foro Mujeres que Lideran con Propósito. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu registro! Te contactaremos pronto con más información.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
