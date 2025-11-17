@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foro Mujeres que Lideran con Propósito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: rgb(95, 40, 99);
@@ -55,24 +56,48 @@
             font-weight: bold;
         }
         
-        nav ul {
+        /* Navegación Responsiva */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links {
             display: flex;
             list-style: none;
         }
         
-        nav ul li {
+        .nav-links li {
             margin-left: 20px;
         }
         
-        nav ul li a {
+        .nav-links li a {
             color: var(--light-text);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
         
-        nav ul li a:hover {
+        .nav-links li a:hover {
             color: #e0e0e0;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background-color: var(--light-text);
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
         }
         
         /* Hero Section */
@@ -491,18 +516,42 @@
         
         /* Responsive */
         @media (max-width: 768px) {
-            .header-content {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
                 flex-direction: column;
+                background-color: var(--primary-color);
                 text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+                z-index: 99;
             }
             
-            nav ul {
-                margin-top: 20px;
-                justify-content: center;
+            .nav-links.active {
+                left: 0;
             }
             
-            nav ul li {
-                margin: 0 10px;
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
             }
             
             .hero h1 {
@@ -526,7 +575,7 @@
             <div class="header-content">
                 <div class="logo">FORO MELIPILLA</div>
                 <nav>
-                    <ul>
+                    <ul class="nav-links">
                         <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#about">Acerca del Foro</a></li>
                         <li><a href="#why">¿Por qué asistir?</a></li>
@@ -535,6 +584,11 @@
                         <li><a href="#organizers">Organizadoras</a></li>
                         <li><a href="#registration">Registro</a></li>
                     </ul>
+                    <div class="menu-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -562,9 +616,9 @@
                     <p>Es una experiencia diseñada para quienes buscan unir liderazgo, propósito y acción social en su vida personal o profesional.</p>
                     <div class="event-details">
                         <h3>EVENTO GRATUITO CON CUPOS LIMITADOS</h3>
-                        <p><i>📅</i> Jueves 27 de noviembre de 2025</p>
-                        <p><i>🕥</i> Acreditación: 9:30 Hrs. Inicio: 10:00 Hrs.</p>
-                        <p><i>📍</i> Auditorio DUOC UC – Sede Melipilla<br> Calle Serrano 1105, Melipilla.</p>
+                        <p><i class="fas fa-calendar-alt"></i> Jueves 27 de noviembre de 2025</p>
+                        <p><i class="fas fa-clock"></i> Acreditación: 9:30 Hrs. Inicio: 10:00 Hrs.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Auditorio DUOC UC – Sede Melipilla<br> Calle Serrano 1105, Melipilla.</p>
                         <a href="#registration" class="btn">QUIERO MI CUPO</a>
                     </div>
                 </div>
@@ -784,10 +838,10 @@
                 <div class="footer-section">
                     <h3>SÍGUENOS</h3>
                     <div class="social-links">
-                        <a href="#">FB</a>
-                        <a href="#">IG</a>
-                        <a href="#">TW</a>
-                        <a href="#">LI</a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -798,7 +852,24 @@
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Menú hamburguesa
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling para navegación
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
